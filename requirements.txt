@@ -4,4 +4,4 @@ gunicorn
 firebase-admin
 deepface
 opencv-python-headless
-tf-keras
+tensorflow-cpu
