@@ -150,33 +150,16 @@ def recognize_face(image_bytes):
 
 
 # ---------------------------------------------------------------------------
-# 3. ROUTES - GUI PAGES
+# 3. ROUTES - BACKEND API
 # ---------------------------------------------------------------------------
 @app.route("/")
-def dashboard():
-    """Main dashboard: shows recent attendance logs."""
-    logs = []
-    if db:
-        docs = (
-            db.collection("attendance_logs")
-            .order_by("timestamp", direction=firestore.Query.DESCENDING)
-            .limit(50)
-            .stream()
-        )
-        logs = [doc.to_dict() for doc in docs]
-    return render_template("dashboard.html", logs=logs)
-
-
-@app.route("/register", methods=["GET"])
-def register_page():
-    """Page to register a new user's face profile."""
-    return render_template("register.html")
-
-
-@app.route("/capture", methods=["GET"])
-def capture_page():
-    """Live capture page: shows webcam feed and scans for attendance."""
-    return render_template("capture.html")
+def index():
+    """Health check endpoint."""
+    return jsonify({
+        "status": "online",
+        "service": "Attendance System Backend API",
+        "version": "1.0.0"
+    })
 
 
 # ---------------------------------------------------------------------------
