@@ -5,3 +5,4 @@ firebase-admin
 deepface
 opencv-python-headless
 tensorflow-cpu
+tf-keras
