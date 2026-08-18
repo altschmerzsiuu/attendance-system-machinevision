@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 # CONFIGURATION
 # ============================================================
 MODEL_NAME = "ArcFace"
-DETECTOR = "retinaface"
+DETECTOR = "opencv"
 DISTANCE_THRESHOLD = 0.45
 FIREBASE_IMAGE_FOLDER = "images/"
 USERS_COLLECTION = "users"

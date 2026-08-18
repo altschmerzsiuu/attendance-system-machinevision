@@ -192,7 +192,7 @@ def api_register():
         embedding_result = DeepFace.represent(
             img_path=image_rgb,
             model_name="ArcFace",
-            detector_backend="retinaface",
+            detector_backend="opencv",
             enforce_detection=False
         )
         embedding = embedding_result[0]["embedding"]
