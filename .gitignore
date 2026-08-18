@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+venv_old/
+.env
+
+# Firebase / Secrets (DO NOT PUSH THESE!)
+firebase-credentials.json
+*.json.bak
+
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+
+# Project specific
+*.pkl
