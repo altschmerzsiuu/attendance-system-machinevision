@@ -23,8 +23,7 @@ export default function Capture() {
 
       const base64Data = imageSrc.split(',')[1];
 
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const res = await fetch(`${baseUrl}/api/capture`, {
+      const res = await fetch('/api/capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image_base64: base64Data }),

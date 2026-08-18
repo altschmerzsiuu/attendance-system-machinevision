@@ -12,7 +12,6 @@ Run:
 """
 
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
@@ -29,27 +28,18 @@ from deepface import DeepFace
 import FaceRecognitionAttendenceSystem as fr_system
 
 app = Flask(__name__)
-# Enable CORS for all routes (to allow Vercel frontend to talk to Render backend)
-CORS(app)
 
 # ---------------------------------------------------------------------------
 # 1. FIREBASE SETUP
 # ---------------------------------------------------------------------------
-# In local development: uses 'firebase-credentials.json' in this folder.
-# In Render production: configure FIREBASE_CRED_PATH env var to point to your Secret File.
-# Alternatively, you can use a JSON string in FIREBASE_CRED_JSON.
-CRED_PATH = os.environ.get("FIREBASE_CRED_PATH", "firebase-credentials.json")
+# Download your service account key from:
+# Firebase Console > Project Settings > Service Accounts > Generate new private key
+# Save it as firebase-credentials.json in this folder.
+CRED_PATH = "firebase-credentials.json"
 FIREBASE_STORAGE_BUCKET = "attendance-system-mv-51ba6.firebasestorage.app"
 
 if os.path.exists(CRED_PATH):
     cred = credentials.Certificate(CRED_PATH)
-elif os.environ.get("FIREBASE_CRED_JSON"):
-    cred_dict = json.loads(os.environ.get("FIREBASE_CRED_JSON"))
-    cred = credentials.Certificate(cred_dict)
-else:
-    cred = None
-
-if cred:
     firebase_admin.initialize_app(cred, {"storageBucket": FIREBASE_STORAGE_BUCKET})
     db = firestore.client()
     from firebase_admin import storage

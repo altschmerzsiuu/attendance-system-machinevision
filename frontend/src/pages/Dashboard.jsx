@@ -19,8 +19,7 @@ export default function Dashboard() {
     setLoading(true);
     setError(null);
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      let url = `${baseUrl}/api/attendance`;
+      let url = '/api/attendance';
       if (dateFilter) {
         url += `?date=${dateFilter}`;
       }
@@ -45,8 +44,7 @@ export default function Dashboard() {
     
     setIsResetting(true);
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const res = await fetch(`${baseUrl}/api/attendance/reset`, { method: 'DELETE' });
+      const res = await fetch('/api/attendance/reset', { method: 'DELETE' });
       if (res.ok) {
         setLogs([]);
       } else {

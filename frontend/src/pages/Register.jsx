@@ -41,8 +41,7 @@ export default function Register() {
       // We need to send just the base64 string, or the backend expects the raw base64.
       // Let's strip the prefix.
       const base64Data = imgSrc.split(',')[1];
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const res = await fetch(`${baseUrl}/api/register`, {
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
